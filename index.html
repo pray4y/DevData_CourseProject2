@@ -1,1 +1,208 @@
-default
+<!DOCTYPE html>
+<html>
+<head>
+  <title>A Quick Guide to &quot;GET 24!&quot; the Game</title>
+  <meta charset="utf-8">
+  <meta name="description" content="A Quick Guide to &quot;GET 24!&quot; the Game">
+  <meta name="author" content="Ariel (pray4y)">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <aside class="gdbar">
+    <img src="assets/img/pray4y.png">
+  </aside>
+  <hgroup class="auto-fadein">
+    <h1>A Quick Guide to &quot;GET 24!&quot; the Game</h1>
+    <h2>Reproducible Presentation on ShinyApp</h2>
+    <p>Ariel (pray4y)<br/>JHU's Developing Data Products on Coursera</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Inspiration of GET 24!</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>People have designed thousands of games based on Pokers. Ever since Poker cards were invented, the influence of these cards have never been faded. </p>
+
+<p>The idea of GET 24! originated from a popular game I like to play with friends. We use full suits of Poker cards to represent integers from 1 to 13. Each round, four cards are drawn randomly from the card deck. Then these cards and thus the integers they represnt are revealed to every player. Whoever first manages to construct an arithmetic expression equal to twenty-four using these integers (operands) and regular arithmetic operators is the winner of the current round. </p>
+
+<p>This is a fun and challenging game, especially when multiple players are trying to compete with each other. </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Layout of GET 24!</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>As you can see, below is a partial screenshot of GET 24!.</p>
+
+<p><img src="gamescreenshot.png" alt="Game Screenshot"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Widgets of GET 24!</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The outcome of each round is displayed in the right (main) panel. Game instructions are placed below the main text output in the right panel. </p>
+
+<p>Player controls the widgets in the left (sidebar) panel. There are four dropdown lists in the left panel, each provides thirteen valid choices representing different cards in each card suit. Player gets to select one card from each dropdown list. Essentially, each card can be mapped to an integer between 1 to 13. </p>
+
+<p>To view the proper outcome, player not only needs to choose four cards but also needs to click the &quot;Calculate&quot; button at the bottom of the left panel. Once the button is clicked, it may take a couple of seconds for GET 24! to calculate and print the outcome at the top of the right panel. </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Flow of GET 24!</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>I. Player chooses four integers in the range of 1 to 13. In GET 24!, A is mapped to 1, J to 11, Q to 12, K to 13. Integers can be repetitive.
+II. GET 24! calculates all possible arithmetic expressions using these four integers and three operators from add(+), substract(-), multiply(*), and/or divide(/). (Operators can be repetitive.) A typical arithmetic expression: </p>
+
+<pre><code class="r">set.seed(2); a &lt;- sample(13, 4, replace = TRUE)
+set.seed(4); b &lt;- sample(4, 3, replace = TRUE)
+sign &lt;- c(&quot;+&quot;, &quot;-&quot;, &quot;*&quot;, &quot;/&quot;)
+cat(&quot;(&quot;, &quot;(&quot;, &quot;(&quot;, a[1], sign[b[1]], a[2], &quot;)&quot;, sign[b[2]], a[3], &quot;)&quot;, sign[b[3]], a[4], &quot;)&quot;)
+</code></pre>
+
+<pre><code>## ( ( ( 3 * 10 ) + 8 ) - 3 )
+</code></pre>
+
+<p>III. The default order of operation as secured using pairs of brackets is from left to right. If GET 24! finds one or more expressions that equals 24, it will print the first of those expressions. Otherwise, it will modify the order of operations and continue searching until it runs out of possible expressions. </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>Ready to have a try?</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><a href="https://pray4y.shinyapps.io/Get24_DevDataProd_CP/">GET 24!</a></p>
+
+<p>This page display a set of four integers randomly selected from 1 to 13. 
+It will also give a valid GET 24! equation (if existing) corresponding to these four numbers. </p>
+
+<pre><code class="r">set.seed(24); num1 &lt;- sample(13, 4, replace = TRUE); cat(num1, &quot;-&gt;&quot;, get24(num1))
+</code></pre>
+
+<pre><code>## 4 3 10 7 -&gt; ( ( ( 4 + 3 ) + 10 ) + 7 ) = 24
+</code></pre>
+
+<pre><code class="r">set.seed(2424); num2 &lt;- sample(13, 4, replace = TRUE); cat(num2, &quot;-&gt;&quot;, get24(num2))
+</code></pre>
+
+<pre><code>## 7 10 3 7 -&gt; ( ( ( 7 * 3 ) + 10 ) - 7 ) = 24
+</code></pre>
+
+<pre><code class="r">set.seed(242424); num3 &lt;- sample(13, 4, replace = TRUE); cat(num3, &quot;-&gt;&quot;, get24(num3))
+</code></pre>
+
+<pre><code>## 8 2 4 12 -&gt; ( ( ( 8 - 2 ) - 4 ) * 12 ) = 24
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Inspiration of GET 24!'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Layout of GET 24!'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Widgets of GET 24!'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Flow of GET 24!'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Ready to have a try?'>
+         5
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
