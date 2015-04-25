@@ -63,34 +63,9 @@ III. The default order of operation as secured using pairs of brackets is from l
 
 [GET 24!](https://pray4y.shinyapps.io/Get24_DevDataProd_CP/)
 
-This page display a set of four integers randomly selected from 1 to 13. 
-It will also give a valid GET 24! equation (if existing) corresponding to these four numbers. 
 
 
 
 
-```r
-set.seed(24); num1 <- sample(13, 4, replace = TRUE); cat(num1, "->", get24(num1))
-```
-
-```
-## 4 3 10 7 -> ( ( ( 4 + 3 ) + 10 ) + 7 ) = 24
-```
-
-```r
-set.seed(2424); num2 <- sample(13, 4, replace = TRUE); cat(num2, "->", get24(num2))
-```
-
-```
-## 7 10 3 7 -> ( ( ( 7 * 3 ) + 10 ) - 7 ) = 24
-```
-
-```r
-set.seed(242424); num3 <- sample(13, 4, replace = TRUE); cat(num3, "->", get24(num3))
-```
-
-```
-## 8 2 4 12 -> ( ( ( 8 - 2 ) - 4 ) * 12 ) = 24
-```
-
-
+<iframe src = "https://pray4y.shinyapps.io/Get24_DevDataProd_CP/" style = "border: none; height: 480px">
+</iframe>

@@ -58,10 +58,9 @@ III. The default order of operation as secured using pairs of brackets is from l
 
 [GET 24!](https://pray4y.shinyapps.io/Get24_DevDataProd_CP/)
 
-This page display a set of four integers randomly selected from 1 to 13. 
-It will also give a valid GET 24! equation (if existing) corresponding to these four numbers. 
-
-```{r get24, echo = FALSE}
+```{r get24, echo = FALSE, eval = FALSE}
+# This page display a set of four integers randomly selected from 1 to 13. 
+# It will also give a valid GET 24! equation (if existing) corresponding to these four numbers. 
 get24 <- function(num) {
         sign <- c("+", "-", "*", "/")
         num <- num
@@ -228,13 +227,13 @@ get24 <- function(num) {
 }
 ```
 
-```{r get24sample}
+```{r get24sample, echo = FALSE, eval = FALSE}
 set.seed(24); num1 <- sample(13, 4, replace = TRUE); cat(num1, "->", get24(num1))
 set.seed(2424); num2 <- sample(13, 4, replace = TRUE); cat(num2, "->", get24(num2))
 set.seed(242424); num3 <- sample(13, 4, replace = TRUE); cat(num3, "->", get24(num3))
 ```
 
-```{r embeded shiny 2, echo = FALSE, results = 'asis', eval = FALSE}
+```{r embeded shiny 2, echo = FALSE, results = 'asis'}
 # GET 24! is loading onto this slide. Please wait ... 
 system("R -e 'shiny::runApp(..., port = 8101)' &")
 cat('<iframe src = "https://pray4y.shinyapps.io/Get24_DevDataProd_CP/" style = "border: none; height: 480px">\n</iframe>')
